@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TradeQuest – Track. Trade. Triumph.</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #050508;
+  --surface: #0d0d14;
+  --card: #111118;
+  --border: #1e1e2e;
+  --gold: #f5c842;
+  --gold2: #ffaa00;
+  --green: #00e676;
+  --red: #ff4545;
+  --blue: #4fc3f7;
+  --text: #f0f0ff;
+  --muted: #6b6b8a;
+  --radius: 18px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ANIMATED BG */
+.bg-fx{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(245,200,66,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(0,230,118,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(79,195,247,0.03) 0%, transparent 60%);
+}
+.grid-lines{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(245,200,66,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,200,66,0.03) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+
+/* TICKER */
+.ticker-wrap{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:linear-gradient(90deg,#f5c842,#ffaa00);
+  height:32px;overflow:hidden;
+}
+.ticker-track{
+  display:flex;align-items:center;height:100%;
+  animation:ticker 30s linear infinite;
+  white-space:nowrap;
+}
+.ticker-item{
+  font-size:0.75rem;font-weight:700;color:#000;
+  padding:0 32px;letter-spacing:1px;
+}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* HEADER */
+header{
+  position:sticky;top:32px;z-index:100;
+  background:rgba(5,5,8,0.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 20px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{
+  width:36px;height:36px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;font-weight:900;color:#000;
+}
+.logo-text{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;letter-spacing:2px;
+  background:linear-gradient(135deg,var(--gold),#fff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.logo-sub{font-size:0.6rem;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-top:-4px;}
+nav{display:flex;gap:20px;}
+nav a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s;}
+nav a:hover{color:var(--gold);}
+
+/* HERO */
+.hero{
+  position:relative;z-index:1;
+  text-align:center;padding:80px 20px 60px;
+  margin-top:32px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);
+  color:var(--gold);font-size:0.75rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:6px 16px;border-radius:999px;margin-bottom:28px;
+}
+.hero-badge::before{content:'●';animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,12vw,7rem);
+  line-height:0.9;letter-spacing:3px;
+  margin-bottom:20px;
+}
+.hero h1 .line1{
+  background:linear-gradient(135deg,#fff,var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.hero h1 .line2{
+  background:linear-gradient(135deg,var(--gold),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.hero p{font-size:1.05rem;color:var(--muted);max-width:540px;margin:0 auto 40px;line-height:1.8;}
+
+/* LIVE STATS BAR */
+.live-stats{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  margin-bottom:50px;
+  border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;max-width:700px;margin-left:auto;margin-right:auto;
+}
+.live-stat{
+  flex:1;min-width:140px;padding:16px 20px;text-align:center;
+  border-right:1px solid var(--border);background:var(--card);
+}
+.live-stat:last-child{border-right:none;}
+.ls-val{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--gold);}
+.ls-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+/* CTA */
+.cta-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;border:none;padding:14px 32px;border-radius:12px;
+  font-size:1rem;font-weight:800;cursor:pointer;
+  font-family:'Outfit',sans-serif;transition:transform 0.2s,box-shadow 0.2s;
+  letter-spacing:0.5px;
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,200,66,0.4);}
+.btn-outline{
+  background:transparent;color:var(--text);
+  border:1px solid var(--border);padding:14px 32px;border-radius:12px;
+  font-size:1rem;font-weight:600;cursor:pointer;
+  font-family:'Outfit',sans-serif;transition:all 0.2s;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+
+/* AD */
+.ad-slot{
+  position:relative;z-index:1;
+  margin:10px 20px 40px;
+  background:var(--surface);border:1px dashed var(--border);
+  border-radius:var(--radius);padding:16px;
+  text-align:center;color:var(--muted);font-size:0.72rem;
+  min-height:90px;display:flex;align-items:center;justify-content:center;
+}
+
+/* SECTION */
+.section{position:relative;z-index:1;padding:20px 20px 60px;max-width:1100px;margin:0 auto;}
+.sec-label{font-size:0.72rem;color:var(--gold);text-transform:uppercase;letter-spacing:3px;font-weight:700;margin-bottom:8px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.5rem);letter-spacing:2px;margin-bottom:6px;}
+.sec-title span{color:var(--gold);}
+.sec-sub{color:var(--muted);font-size:0.9rem;margin-bottom:36px;line-height:1.7;}
+
+/* SET TARGET FORM */
+.target-form{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:32px;
+  position:relative;overflow:hidden;
+}
+.target-form::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--green),var(--blue));
+}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-label{font-size:0.8rem;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+input,select,textarea{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text);padding:12px 16px;border-radius:12px;
+  font-family:'Outfit',sans-serif;font-size:0.95rem;outline:none;
+  transition:border-color 0.2s;width:100%;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);}
+select option{background:var(--card);}
+.full{grid-column:1/-1;}
+.currency-toggle{display:flex;gap:8px;margin-bottom:16px;}
+.curr-btn{
+  padding:8px 20px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);cursor:pointer;font-family:'Outfit',sans-serif;
+  font-size:0.85rem;font-weight:600;transition:all 0.2s;
+}
+.curr-btn.active{background:var(--gold);color:#000;border-color:var(--gold);}
+
+/* TRADER CARDS */
+.traders-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+.trader-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;
+  transition:all 0.3s;position:relative;overflow:hidden;
+  cursor:pointer;
+}
+.trader-card:hover{border-color:rgba(245,200,66,0.4);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.5);}
+.trader-card .card-glow{
+  position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle,rgba(245,200,66,0.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+.trader-top{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.trader-avatar{
+  width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:1.1rem;color:#000;flex-shrink:0;
+}
+.trader-info{flex:1;}
+.trader-name{font-weight:700;font-size:1rem;}
+.trader-type{font-size:0.75rem;color:var(--muted);}
+.trader-badge-live{
+  background:rgba(0,230,118,0.15);border:1px solid rgba(0,230,118,0.3);
+  color:var(--green);font-size:0.65rem;font-weight:700;
+  padding:3px 8px;border-radius:999px;letter-spacing:1px;
+}
+
+/* PROGRESS */
+.progress-section{margin-bottom:20px;}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.progress-label{font-size:0.8rem;color:var(--muted);}
+.progress-pct{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--gold);}
+.progress-bar-wrap{height:8px;background:var(--surface);border-radius:999px;overflow:hidden;}
+.progress-bar-fill{
+  height:100%;border-radius:999px;
+  background:linear-gradient(90deg,var(--gold),var(--green));
+  transition:width 1s ease;
+}
+.progress-bar-fill.danger{background:linear-gradient(90deg,var(--red),#ff8c00);}
+
+.trader-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
+.t-stat{background:var(--surface);border-radius:10px;padding:10px;text-align:center;}
+.t-stat-val{font-weight:700;font-size:1rem;}
+.t-stat-val.green{color:var(--green);}
+.t-stat-val.red{color:var(--red);}
+.t-stat-val.gold{color:var(--gold);}
+.t-stat-label{font-size:0.68rem;color:var(--muted);margin-top:2px;}
+
+.streak{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(245,200,66,0.08);border-radius:8px;padding:8px 12px;
+  font-size:0.8rem;font-weight:600;color:var(--gold);
+}
+
+/* LOG P&L MODAL */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);
+  z-index:9999;align-items:center;justify-content:center;padding:16px;overflow-y:auto;
+}
+.modal-overlay.active{display:flex;}
+.modal{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:24px;padding:32px 24px;
+  width:100%;max-width:480px;margin:auto;
+  position:relative;animation:popIn 0.3s ease;
+}
+@keyframes popIn{from{opacity:0;transform:scale(0.9);}to{opacity:1;transform:scale(1);}}
+.modal::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:24px 24px 0 0;
+  background:linear-gradient(90deg,var(--gold),var(--green));
+}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  background:var(--surface);border:none;color:var(--text);
+  width:32px;height:32px;border-radius:50%;cursor:pointer;
+  font-size:1rem;display:flex;align-items:center;justify-content:center;
+}
+.modal-close:hover{background:var(--red);}
+.modal h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;margin-bottom:6px;}
+.modal p{color:var(--muted);font-size:0.88rem;margin-bottom:24px;}
+
+.pl-toggle{display:flex;gap:8px;margin-bottom:16px;}
+.pl-btn{
+  flex:1;padding:12px;border-radius:10px;border:2px solid var(--border);
+  background:transparent;cursor:pointer;font-family:'Outfit',sans-serif;
+  font-size:1rem;font-weight:700;transition:all 0.2s;
+}
+.pl-btn.profit{color:var(--green);}
+.pl-btn.profit.active{background:rgba(0,230,118,0.15);border-color:var(--green);}
+.pl-btn.loss{color:var(--red);}
+.pl-btn.loss.active{background:rgba(255,69,69,0.15);border-color:var(--red);}
+
+/* LEADERBOARD */
+.leaderboard{display:flex;flex-direction:column;gap:12px;}
+.lb-row{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:16px 20px;
+  display:flex;align-items:center;gap:16px;
+  transition:all 0.2s;
+}
+.lb-row:hover{border-color:rgba(245,200,66,0.3);}
+.lb-rank{
+  font-family:'Bebas Neue',sans-serif;font-size:1.4rem;
+  min-width:36px;text-align:center;
+}
+.lb-rank.gold{color:var(--gold);}
+.lb-rank.silver{color:#c0c0c0;}
+.lb-rank.bronze{color:#cd7f32;}
+.lb-rank.other{color:var(--muted);}
+.lb-avatar{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;color:#000;font-size:0.95rem;
+}
+.lb-info{flex:1;}
+.lb-name{font-weight:700;font-size:0.95rem;}
+.lb-detail{font-size:0.75rem;color:var(--muted);margin-top:2px;}
+.lb-right{text-align:right;}
+.lb-pnl{font-weight:700;font-size:1rem;}
+.lb-pnl.green{color:var(--green);}
+.lb-days{font-size:0.72rem;color:var(--muted);margin-top:2px;}
+
+/* CERTIFICATE */
+.cert-wrap{
+  background:linear-gradient(135deg,#0d0d00,#1a1400);
+  border:2px solid var(--gold);border-radius:20px;
+  padding:40px;text-align:center;position:relative;overflow:hidden;
+  display:none;
+}
+.cert-wrap.show{display:block;}
+.cert-wrap::before{
+  content:'';position:absolute;inset:8px;
+  border:1px solid rgba(245,200,66,0.3);border-radius:14px;pointer-events:none;
+}
+.cert-title{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:5px;color:var(--gold);margin-bottom:12px;}
+.cert-main{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,8vw,3.5rem);letter-spacing:3px;margin-bottom:8px;
+  background:linear-gradient(135deg,var(--gold),#fff,var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.cert-name{font-size:1.4rem;font-weight:700;margin-bottom:8px;}
+.cert-body{color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:20px;}
+.cert-amount{
+  font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--green);
+  margin-bottom:4px;
+}
+.cert-icons{font-size:2rem;margin-bottom:16px;letter-spacing:8px;}
+.cert-seal{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:70px;height:70px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;font-size:1.8rem;margin-bottom:12px;
+}
+.cert-footer{font-size:0.72rem;color:var(--muted);letter-spacing:2px;}
+
+/* HOW IT WORKS */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;}
+.step-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;text-align:center;
+  transition:all 0.3s;
+}
+.step-card:hover{border-color:rgba(245,200,66,0.4);transform:translateY(-4px);}
+.step-num{
+  font-family:'Bebas Neue',sans-serif;font-size:3rem;color:rgba(245,200,66,0.2);
+  line-height:1;margin-bottom:8px;
+}
+.step-icon{font-size:2rem;margin-bottom:12px;}
+.step-title{font-weight:700;font-size:0.95rem;margin-bottom:6px;}
+.step-desc{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.feat-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:22px;
+  display:flex;gap:14px;align-items:flex-start;
+  transition:border-color 0.2s;
+}
+.feat-card:hover{border-color:rgba(245,200,66,0.3);}
+.feat-icon{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+}
+.feat-title{font-weight:700;font-size:0.9rem;margin-bottom:4px;}
+.feat-desc{font-size:0.78rem;color:var(--muted);line-height:1.6;}
+
+/* MOTIVATIONAL QUOTE */
+.quote-box{
+  background:linear-gradient(135deg,rgba(245,200,66,0.08),rgba(0,230,118,0.05));
+  border:1px solid rgba(245,200,66,0.2);
+  border-radius:var(--radius);padding:36px;text-align:center;
+  margin:40px 0;position:relative;
+}
+.quote-box::before{content:'"';font-family:'Bebas Neue',sans-serif;font-size:8rem;color:rgba(245,200,66,0.08);position:absolute;top:-20px;left:20px;line-height:1;}
+.quote-text{font-size:clamp(1rem,3vw,1.3rem);font-weight:600;line-height:1.7;margin-bottom:12px;}
+.quote-author{font-size:0.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+
+/* RESULT TOAST */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--card);border:1px solid var(--gold);
+  border-radius:12px;padding:14px 24px;
+  font-weight:600;font-size:0.9rem;color:var(--gold);
+  z-index:99999;display:none;
+  box-shadow:0 8px 32px rgba(245,200,66,0.3);
+  animation:slideUp 0.3s ease;
+}
+.toast.show{display:block;}
+@keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+
+/* FOOTER */
+footer{
+  position:relative;z-index:1;
+  border-top:1px solid var(--border);
+  padding:40px 20px 24px;text-align:center;
+}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:3px;
+  background:linear-gradient(135deg,var(--gold),#fff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:8px;
+}
+footer p{font-size:0.78rem;color:var(--muted);}
+.byline{font-size:0.6rem;color:#1a1a2e;margin-top:20px;letter-spacing:1px;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
+
+@media(max-width:600px){
+  .form-grid{grid-template-columns:1fr;}
+  .traders-grid{grid-template-columns:1fr;}
+  .steps-grid{grid-template-columns:1fr 1fr;}
+  .features-grid{grid-template-columns:1fr;}
+  nav{display:none;}
+  .live-stats{flex-direction:row;}
+  .live-stat{min-width:100px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-fx"></div>
+<div class="grid-lines"></div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ticker-item">🟢 GOLD +1.2%</span>
+    <span class="ticker-item">🔴 EUR/USD -0.3%</span>
+    <span class="ticker-item">🟢 BTC +4.5%</span>
+    <span class="ticker-item">🟢 ETH +3.1%</span>
+    <span class="ticker-item">🔴 GBP/USD -0.8%</span>
+    <span class="ticker-item">🟢 NASDAQ +0.9%</span>
+    <span class="ticker-item">🔴 OIL -1.4%</span>
+    <span class="ticker-item">🟢 USD/INR +0.2%</span>
+    <span class="ticker-item">🟢 SILVER +2.1%</span>
+    <span class="ticker-item">🔴 XRP -1.8%</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">🟢 GOLD +1.2%</span>
+    <span class="ticker-item">🔴 EUR/USD -0.3%</span>
+    <span class="ticker-item">🟢 BTC +4.5%</span>
+    <span class="ticker-item">🟢 ETH +3.1%</span>
+    <span class="ticker-item">🔴 GBP/USD -0.8%</span>
+    <span class="ticker-item">🟢 NASDAQ +0.9%</span>
+    <span class="ticker-item">🔴 OIL -1.4%</span>
+    <span class="ticker-item">🟢 USD/INR +0.2%</span>
+    <span class="ticker-item">🟢 SILVER +2.1%</span>
+    <span class="ticker-item">🔴 XRP -1.8%</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">TQ</div>
+    <div>
+      <div class="logo-text">TradeQuest</div>
+      <div class="logo-sub">Track · Trade · Triumph</div>
+    </div>
+  </div>
+  <nav>
+    <a href="#set-target">Set Target</a>
+    <a href="#traders">Traders</a>
+    <a href="#leaderboard">Leaderboard</a>
+    <a href="#certificate">Certificate</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🔴 Live Trading Community</div>
+  <h1>
+    <span class="line1">TRADE WITH</span>
+    <span class="line2">PURPOSE</span>
+  </h1>
+  <p>Set your financial target. Log every trade. Celebrate when you crush it. The only trading tracker built for serious traders who want results.</p>
+
+  <div class="live-stats">
+    <div class="live-stat">
+      <div class="ls-val" id="statTraders">0</div>
+      <div class="ls-label">Your Targets Set</div>
+    </div>
+    <div class="live-stat">
+      <div class="ls-val" id="statTargets">₹0</div>
+      <div class="ls-label">Total Target</div>
+    </div>
+    <div class="live-stat">
+      <div class="ls-val" id="statAchieved">0</div>
+      <div class="ls-label">Targets Achieved</div>
+    </div>
+    <div class="live-stat">
+      <div class="ls-val" id="statCerts">0</div>
+      <div class="ls-label">Certificates Earned</div>
+    </div>
+  </div>
+
+  <div class="cta-group">
+    <button class="btn-gold" onclick="document.getElementById('set-target').scrollIntoView({behavior:'smooth'})">🎯 Set My Target</button>
+    <button class="btn-outline" onclick="document.getElementById('traders').scrollIntoView({behavior:'smooth'})">👥 View Traders</button>
+  </div>
+</section>
+
+<!-- AD -->
+<div class="ad-slot">
+  <ins class="adsbygoogle" style="display:block;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="sec-label">How It Works</div>
+  <div class="sec-title">4 Steps to <span>Glory</span></div>
+  <div class="sec-sub">Simple. Powerful. Motivating.</div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">🎯</div>
+      <div class="step-title">Set Your Target</div>
+      <div class="step-desc">Define your profit goal — monthly, quarterly, or custom. Commit to the number.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">📊</div>
+      <div class="step-title">Log Daily P&L</div>
+      <div class="step-desc">Share your profit or loss every trading day. Stay honest. Stay consistent.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">🔥</div>
+      <div class="step-title">Build Your Streak</div>
+      <div class="step-desc">Track winning streaks. Compete on the leaderboard. Push each other higher.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-icon">🏆</div>
+      <div class="step-title">Earn Certificate</div>
+      <div class="step-desc">Hit your target and get a personalized achievement certificate to share!</div>
+    </div>
+  </div>
+</section>
+
+<!-- SET TARGET -->
+<section class="section" id="set-target">
+  <div class="sec-label">Start Here</div>
+  <div class="sec-title">Set Your <span>Target</span></div>
+  <div class="sec-sub">Define your goal. Make it real. Chase it every single day.</div>
+
+  <div class="target-form">
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" id="traderName" placeholder="e.g. Rakshith">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Trading Style</label>
+        <select id="traderStyle">
+          <option value="Crypto Trader">🪙 Crypto Trader</option>
+          <option value="Forex Trader">💱 Forex Trader</option>
+          <option value="Stock Trader">📈 Stock Trader</option>
+          <option value="Options Trader">⚡ Options Trader</option>
+          <option value="Futures Trader">🔮 Futures Trader</option>
+          <option value="Multi-Market">🌐 Multi-Market</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Currency</label>
+        <select id="traderCurrency">
+          <option value="₹">₹ INR</option>
+          <option value="$">$ USD</option>
+          <option value="€">€ EUR</option>
+          <option value="£">£ GBP</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Profit Target Amount</label>
+        <input type="number" id="traderTarget" placeholder="e.g. 50000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Starting Capital</label>
+        <input type="number" id="traderCapital" placeholder="e.g. 100000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Target Period</label>
+        <select id="traderPeriod">
+          <option value="30">Monthly (30 days)</option>
+          <option value="90">Quarterly (90 days)</option>
+          <option value="180">6 Months</option>
+          <option value="365">Yearly</option>
+          <option value="7">Weekly Challenge</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Your Trading Motto (optional)</label>
+        <input type="text" id="traderMotto" placeholder="e.g. Discipline beats emotions every time">
+      </div>
+    </div>
+    <button class="btn-gold" style="width:100%;font-size:1.1rem;padding:16px;" onclick="createTrader()">🚀 Launch My Quest</button>
+  </div>
+</section>
+
+<!-- ACTIVE TRADERS -->
+<section class="section" id="traders">
+  <div class="sec-label">Community</div>
+  <div class="sec-title">Active <span>Traders</span></div>
+  <div class="sec-sub">Real traders. Real targets. Real results.</div>
+  <div class="traders-grid" id="tradersGrid">
+    <!-- populated by JS -->
+  </div>
+</section>
+
+<!-- AD MID -->
+<div class="ad-slot" style="margin:0 20px 40px;">
+  <ins class="adsbygoogle" style="display:block;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="2222222222" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- QUOTE -->
+<div class="section">
+  <div class="quote-box">
+    <div class="quote-text" id="quoteText">"The goal of a successful trader is to make the best trades. Money is secondary."</div>
+    <div class="quote-author" id="quoteAuthor">— Alexander Elder</div>
+    <br>
+    <button class="btn-outline" style="margin-top:12px;" onclick="nextQuote()">Next Quote 💬</button>
+  </div>
+</div>
+
+<!-- LEADERBOARD -->
+<section class="section" id="leaderboard">
+  <div class="sec-label">Rankings</div>
+  <div class="sec-title">🏆 <span>Leaderboard</span></div>
+  <div class="sec-sub">Top performers this month. Who's crushing their targets?</div>
+  <div class="leaderboard" id="leaderboardList">
+    <!-- populated by JS -->
+  </div>
+</section>
+
+<!-- AD -->
+<div class="ad-slot" style="margin:0 20px 40px;">
+  <ins class="adsbygoogle" style="display:block;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="3333333333" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- CERTIFICATE SECTION -->
+<section class="section" id="certificate">
+  <div class="sec-label">Achievement</div>
+  <div class="sec-title">Earn Your <span>Certificate</span></div>
+  <div class="sec-sub">Hit your target and get a shareable certificate of achievement!</div>
+
+  <!-- sample cert -->
+  <div class="cert-wrap show" id="sampleCert">
+    <div class="cert-title">✦ TRADEQUEST ACHIEVEMENT ✦</div>
+    <div class="cert-main">TARGET ACHIEVED</div>
+    <div class="cert-seal">🏆</div>
+    <div class="cert-name">Rakshith K.</div>
+    <div class="cert-body">
+      This certifies that the above trader has successfully achieved their<br>
+      trading profit target with consistency and discipline.
+    </div>
+    <div class="cert-amount">+₹50,000 Profit</div>
+    <div class="cert-icons">🎯 🔥 💰</div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;">
+      <div style="background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);border-radius:8px;padding:8px 16px;font-size:0.8rem;">
+        <div style="color:var(--gold);font-weight:700;">30 Days</div>
+        <div style="color:var(--muted);font-size:0.7rem;">Completed In</div>
+      </div>
+      <div style="background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.3);border-radius:8px;padding:8px 16px;font-size:0.8rem;">
+        <div style="color:var(--green);font-weight:700;">18 Days</div>
+        <div style="color:var(--muted);font-size:0.7rem;">Winning Streak</div>
+      </div>
+      <div style="background:rgba(79,195,247,0.1);border:1px solid rgba(79,195,247,0.3);border-radius:8px;padding:8px 16px;font-size:0.8rem;">
+        <div style="color:var(--blue);font-weight:700;">Forex Trader</div>
+        <div style="color:var(--muted);font-size:0.7rem;">Trading Style</div>
+      </div>
+    </div>
+    <div class="cert-footer">ISSUED BY TRADEQUEST · 2025 · VERIFIED ACHIEVEMENT</div>
+  </div>
+  <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:16px;">👆 This is a sample. Your certificate generates automatically when you hit your target!</p>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="sec-label">Why TradeQuest</div>
+  <div class="sec-title">Built for <span>Real Traders</span></div>
+  <div class="sec-sub">Everything you need to stay accountable and motivated.</div>
+  <div class="features-grid">
+    <div class="feat-card"><div class="feat-icon">🎯</div><div><div class="feat-title">Goal Setting</div><div class="feat-desc">Set clear profit targets with deadlines. Know exactly what you're working towards.</div></div></div>
+    <div class="feat-card"><div class="feat-icon">📊</div><div><div class="feat-title">Daily P&L Logging</div><div class="feat-desc">Log profits and losses every day. Build a complete trading journal automatically.</div></div></div>
+    <div class="feat-card"><div class="feat-icon">🔥</div><div><div class="feat-title">Streak Tracking</div><div class="feat-desc">Track consecutive winning days. Streaks build discipline and motivation.</div></div></div>
+    <div class="feat-card"><div class="feat-icon">🏆</div><div><div class="feat-title">Leaderboard</div><div class="feat-desc">Compete with other traders. Healthy competition drives better performance.</div></div></div>
+    <div class="feat-card"><div class="feat-icon">📜</div><div><div class="feat-title">Achievement Certificates</div><div class="feat-desc">Get a beautiful certificate when you hit your target. Share on LinkedIn and Instagram.</div></div></div>
+    <div class="feat-card"><div class="feat-icon">💡</div><div><div class="feat-title">Daily Motivation</div><div class="feat-desc">Trading quotes and motivation to keep you focused on your goals every single day.</div></div></div>
+    <div class="feat-card"><div class="feat-icon">📈</div><div><div class="feat-title">Progress Visualization</div><div class="feat-desc">See your journey to the target with visual progress bars and statistics.</div></div></div>
+    <div class="feat-card"><div class="feat-icon">🌐</div><div><div class="feat-title">Multi-Market Support</div><div class="feat-desc">Crypto, Forex, Stocks, Options — all trading styles welcome here.</div></div></div>
+  </div>
+</section>
+
+<!-- FOOTER AD -->
+<div class="ad-slot" style="margin:0 20px 20px;">
+  <ins class="adsbygoogle" style="display:block;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="4444444444" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<footer>
+  <div class="footer-logo">TradeQuest</div>
+  <p>Track. Trade. Triumph. — The trader's accountability platform.</p>
+  <p style="margin-top:6px;">© 2025 TradeQuest. All rights reserved.</p>
+  <div class="byline">Build by Rakshith</div>
+</footer>
+
+<!-- LOG P&L MODAL -->
+<div class="modal-overlay" id="plModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closePLModal()">✕</button>
+    <h2>📊 LOG TODAY'S P&L</h2>
+    <p id="plModalDesc">Share your trade result for today</p>
+    <div class="pl-toggle">
+      <button class="pl-btn profit active" id="profitBtn" onclick="setPLType('profit')">🟢 PROFIT</button>
+      <button class="pl-btn loss" id="lossBtn" onclick="setPLType('loss')">🔴 LOSS</button>
+    </div>
+    <div class="form-group" style="margin-bottom:14px;">
+      <label class="form-label">Amount</label>
+      <input type="number" id="plAmount" placeholder="e.g. 2500">
+    </div>
+    <div class="form-group" style="margin-bottom:14px;">
+      <label class="form-label">What did you trade?</label>
+      <input type="text" id="plMarket" placeholder="e.g. BTC/USDT, EUR/USD, Nifty Options">
+    </div>
+    <div class="form-group" style="margin-bottom:20px;">
+      <label class="form-label">Today's lesson / note (optional)</label>
+      <textarea id="plNote" rows="2" placeholder="What did you learn today?"></textarea>
+    </div>
+    <button class="btn-gold" style="width:100%;" onclick="logPL()">Submit Today's P&L</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA =====
+let traders = JSON.parse(localStorage.getItem('tq_traders') || '[]');
+let currentPLType = 'profit';
+let currentTraderIdx = null;
+
+
+const quotes = [
+  {text:'"The goal of a successful trader is to make the best trades. Money is secondary."',author:'Alexander Elder'},
+  {text:'"Risk comes from not knowing what you are doing."',author:'Warren Buffett'},
+  {text:'"In trading, the impossible happens about twice a year."',author:'Henri M. Fabre'},
+  {text:'"The four most dangerous words in investing are: this time it is different."',author:'Sir John Templeton'},
+  {text:'"It\'s not whether you\'re right or wrong, but how much money you make when you\'re right."',author:'George Soros'},
+  {text:'"The market is a device for transferring money from the impatient to the patient."',author:'Warren Buffett'},
+  {text:'"Trade what you see, not what you think."',author:'Trading Wisdom'},
+  {text:'"Lose your opinion, not your money."',author:'Trading Wisdom'},
+  {text:'"Every trader has a story. Only the disciplined ones have a happy ending."',author:'TradeQuest'},
+];
+let quoteIdx = 0;
+function nextQuote(){
+  quoteIdx = (quoteIdx+1)%quotes.length;
+  document.getElementById('quoteText').textContent = quotes[quoteIdx].text;
+  document.getElementById('quoteAuthor').textContent = '— '+quotes[quoteIdx].author;
+}
+
+// ===== RENDER TRADERS =====
+function renderTraders(){
+  const grid = document.getElementById('tradersGrid');
+  grid.innerHTML = '';
+  if(traders.length===0){
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;">
+      <div style="font-size:3rem;margin-bottom:16px;">🎯</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;color:var(--gold);margin-bottom:8px;">YOUR QUEST AWAITS</div>
+      <div style="color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:320px;margin:0 auto 24px;">You haven't set a target yet. Scroll up and launch your trading quest to get started!</div>
+      <button class="btn-gold" onclick="document.getElementById('set-target').scrollIntoView({behavior:'smooth'})">🚀 Set My Target Now</button>
+    </div>`;
+    return;
+  }
+  traders.forEach((t,i)=>{
+    const pct = Math.min(100, Math.round((t.currentPnL/t.target)*100));
+    const isComplete = pct >= 100;
+    const initials = t.name.split(' ').map(n=>n[0]).join('').toUpperCase().substring(0,2);
+    const daysLeft = Math.max(0, t.period - Math.floor((Date.now()-t.startDate)/86400000));
+    const todayPnL = t.days.length>0 ? t.days[t.days.length-1] : 0;
+    const card = document.createElement('div');
+    card.className = 'trader-card';
+    card.innerHTML = `
+      <div class="card-glow"></div>
+      ${isComplete ? '<div style="position:absolute;top:12px;right:12px;font-size:1.4rem;">🏆</div>' : ''}
+      <div class="trader-top">
+        <div class="trader-avatar">${initials}</div>
+        <div class="trader-info">
+          <div class="trader-name">${t.name}</div>
+          <div class="trader-type">${t.style}</div>
+        </div>
+        <div class="trader-badge-live">${isComplete ? '✅ DONE' : '● LIVE'}</div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Target Progress</span>
+          <span class="progress-pct">${pct}%</span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill ${pct<30 && daysLeft<5 ? 'danger':''}" style="width:${pct}%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:0.72rem;color:var(--muted);">
+          <span>${t.currency}${t.currentPnL.toLocaleString()} earned</span>
+          <span>Target: ${t.currency}${t.target.toLocaleString()}</span>
+        </div>
+      </div>
+      <div class="trader-stats">
+        <div class="t-stat">
+          <div class="t-stat-val ${todayPnL>=0?'green':'red'}">${todayPnL>=0?'+':''}${t.currency}${Math.abs(todayPnL).toLocaleString()}</div>
+          <div class="t-stat-label">Today</div>
+        </div>
+        <div class="t-stat">
+          <div class="t-stat-val gold">${t.streak}🔥</div>
+          <div class="t-stat-label">Streak</div>
+        </div>
+        <div class="t-stat">
+          <div class="t-stat-val">${daysLeft}d</div>
+          <div class="t-stat-label">Remaining</div>
+        </div>
+      </div>
+      ${t.motto ? `<div class="streak">💬 "${t.motto}"</div>` : ''}
+      <div style="display:flex;gap:8px;margin-top:16px;">
+        <button class="btn-gold" style="flex:1;padding:10px;font-size:0.85rem;" onclick="openPLModal(${i})">📊 Log P&L</button>
+        ${isComplete ? `<button class="btn-outline" style="flex:1;padding:10px;font-size:0.85rem;" onclick="showCertificate(${i})">🏆 Certificate</button>` : ''}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ===== RENDER LEADERBOARD =====
+function renderLeaderboard(){
+  const list = document.getElementById('leaderboardList');
+  const sorted = [...traders].sort((a,b)=>(b.currentPnL/b.target)-(a.currentPnL/a.target));
+  if(sorted.length===0){
+    list.innerHTML = `<div style="text-align:center;padding:40px;color:var(--muted);">
+      <div style="font-size:2rem;margin-bottom:10px;">🏆</div>
+      <div>No traders yet. Set your target to appear on the leaderboard!</div>
+    </div>`;
+    return;
+  }
+  const rankClass = ['gold','silver','bronze'];
+  const rankEmoji = ['🥇','🥈','🥉'];
+  list.innerHTML = sorted.map((t,i)=>{
+    const pct = Math.min(100,Math.round((t.currentPnL/t.target)*100));
+    const initials = t.name.split(' ').map(n=>n[0]).join('').toUpperCase().substring(0,2);
+    return `
+      <div class="lb-row">
+        <div class="lb-rank ${rankClass[i]||'other'}">${i<3?rankEmoji[i]:i+1}</div>
+        <div class="lb-avatar">${initials}</div>
+        <div class="lb-info">
+          <div class="lb-name">${t.name}</div>
+          <div class="lb-detail">${t.style} · ${t.streak}🔥 streak · ${pct}% complete</div>
+        </div>
+        <div class="lb-right">
+          <div class="lb-pnl green">+${t.currency}${t.currentPnL.toLocaleString()}</div>
+          <div class="lb-days">${t.period} day quest</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ===== CREATE TRADER =====
+function createTrader(){
+  const name = document.getElementById('traderName').value.trim();
+  const target = parseFloat(document.getElementById('traderTarget').value);
+  const capital = parseFloat(document.getElementById('traderCapital').value);
+  if(!name){showToast('⚠️ Please enter your name!');return;}
+  if(!target||target<=0){showToast('⚠️ Please enter a valid target amount!');return;}
+  const trader = {
+    name,
+    style: document.getElementById('traderStyle').value,
+    currency: document.getElementById('traderCurrency').value,
+    target,
+    capital: capital||0,
+    period: parseInt(document.getElementById('traderPeriod').value),
+    motto: document.getElementById('traderMotto').value.trim(),
+    currentPnL: 0,
+    days: [],
+    streak: 0,
+    startDate: Date.now()
+  };
+  traders.unshift(trader);
+  saveTraders();
+  renderTraders();
+  renderLeaderboard();
+  updateStats();
+  document.getElementById('traderName').value='';
+  document.getElementById('traderTarget').value='';
+  document.getElementById('traderCapital').value='';
+  document.getElementById('traderMotto').value='';
+  document.getElementById('traders').scrollIntoView({behavior:'smooth'});
+}
+
+// ===== LOG P&L MODAL =====
+function openPLModal(idx){
+  currentTraderIdx = idx;
+  document.getElementById('plModalDesc').textContent = `Logging for ${traders[idx].name} — Target: ${traders[idx].currency}${traders[idx].target.toLocaleString()}`;
+  document.getElementById('plAmount').value='';
+  document.getElementById('plMarket').value='';
+  document.getElementById('plNote').value='';
+  setPLType('profit');
+  document.getElementById('plModal').classList.add('active');
+}
+function closePLModal(){ document.getElementById('plModal').classList.remove('active'); }
+function setPLType(type){
+  currentPLType=type;
+  document.getElementById('profitBtn').classList.toggle('active',type==='profit');
+  document.getElementById('lossBtn').classList.toggle('active',type==='loss');
+}
+
+function logPL(){
+  const amount = parseFloat(document.getElementById('plAmount').value);
+  if(!amount||amount<=0){showToast('⚠️ Enter a valid amount!');return;}
+  const t = traders[currentTraderIdx];
+  const finalAmount = currentPLType==='profit' ? amount : -amount;
+  t.days.push(finalAmount);
+  t.currentPnL += finalAmount;
+  // update streak
+  if(finalAmount>0){t.streak+=1;}else{t.streak=0;}
+  // check if target achieved
+  const achieved = t.currentPnL >= t.target;
+  saveTraders();
+  closePLModal();
+  renderTraders();
+  renderLeaderboard();
+  updateStats();
+  if(achieved){
+    showToast('🏆 CONGRATULATIONS! '+t.name+' HIT THE TARGET!');
+    setTimeout(()=>{
+      document.getElementById('certificate').scrollIntoView({behavior:'smooth'});
+      showCertificate(currentTraderIdx);
+    },1500);
+  } else {
+    const pct = Math.round((t.currentPnL/t.target)*100);
+    showToast(finalAmount>0 ? `✅ +${t.currency}${amount} logged! You're at ${pct}% of target 🔥` : `📉 Loss logged. Come back stronger tomorrow!`);
+  }
+}
+
+// ===== CERTIFICATE =====
+function showCertificate(idx){
+  const t = traders[idx];
+  const pct = Math.round((t.currentPnL/t.target)*100);
+  const daysUsed = Math.floor((Date.now()-t.startDate)/86400000);
+  const cert = document.getElementById('sampleCert');
+  cert.innerHTML = `
+    <div class="cert-title">✦ TRADEQUEST ACHIEVEMENT CERTIFICATE ✦</div>
+    <div class="cert-main">TARGET ACHIEVED</div>
+    <div class="cert-seal">🏆</div>
+    <div class="cert-name">${t.name}</div>
+    <div class="cert-body">
+      This certifies that the above trader has successfully achieved their<br>
+      trading profit target with consistency and discipline.
+    </div>
+    <div class="cert-amount">+${t.currency}${t.currentPnL.toLocaleString()} Profit</div>
+    <div class="cert-icons">🎯 🔥 💰</div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
+      <div style="background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);border-radius:8px;padding:8px 16px;font-size:0.8rem;">
+        <div style="color:var(--gold);font-weight:700;">${daysUsed} Days</div>
+        <div style="color:var(--muted);font-size:0.7rem;">Completed In</div>
+      </div>
+      <div style="background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.3);border-radius:8px;padding:8px 16px;font-size:0.8rem;">
+        <div style="color:var(--green);font-weight:700;">${t.streak} Days</div>
+        <div style="color:var(--muted);font-size:0.7rem;">Best Streak</div>
+      </div>
+      <div style="background:rgba(79,195,247,0.1);border:1px solid rgba(79,195,247,0.3);border-radius:8px;padding:8px 16px;font-size:0.8rem;">
+        <div style="color:var(--blue);font-weight:700;">${t.style}</div>
+        <div style="color:var(--muted);font-size:0.7rem;">Trading Style</div>
+      </div>
+    </div>
+    <div class="cert-footer">ISSUED BY TRADEQUEST · ${new Date().getFullYear()} · VERIFIED ACHIEVEMENT</div>
+  `;
+  cert.classList.add('show');
+  document.getElementById('certificate').scrollIntoView({behavior:'smooth'});
+}
+
+// ===== UTILS =====
+function saveTraders(){ localStorage.setItem('tq_traders',JSON.stringify(traders)); }
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// close modal on overlay click
+document.getElementById('plModal').addEventListener('click',function(e){if(e.target===this)closePLModal();});
+
+// Update stats from real data
+function updateStats(){
+  const total = traders.length;
+  const achieved = traders.filter(t => t.currentPnL >= t.target).length;
+  const totalTarget = traders.reduce((s,t) => s+t.target, 0);
+  document.getElementById('statTraders').textContent = total;
+  document.getElementById('statTargets').textContent = '₹'+totalTarget.toLocaleString();
+  document.getElementById('statAchieved').textContent = achieved;
+  document.getElementById('statCerts').textContent = achieved;
+}
+updateStats();
+
+// INIT
+renderTraders();
+renderLeaderboard();
+</script>
+</body>
+</html>
